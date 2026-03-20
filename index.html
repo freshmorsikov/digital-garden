@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dark Pastel Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #2b2b33;
+      --bg-soft: #343846;
+      --panel: rgba(243, 242, 249, 0.04);
+      --panel-strong: rgba(243, 242, 249, 0.07);
+      --text: #f3f2f9;
+      --muted: #aab2d1;
+      --text-soft: #606887;
+      --border: rgba(170, 178, 209, 0.18);
+      --line: rgba(170, 178, 209, 0.28);
+      --accent-dark: #45495d;
+      --azure: #6d96eb;
+      --shadow: 0 16px 46px rgba(0, 0, 0, 0.28);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --max-width: 1120px;
+      --transition: 220ms ease;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(153, 185, 255, 0.1), transparent 26%),
+        radial-gradient(circle at top right, rgba(153, 185, 255, 0.14), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(153, 185, 255, 0.07), transparent 28%),
+        linear-gradient(180deg, #25262e 0%, #2b2b33 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page-shell {
+      width: min(100% - 1.5rem, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 4.5rem 0;
+    }
+
+    .section-heading {
+      display: block;
+      margin-bottom: 1.75rem;
+    }
+
+    .section-heading::before {
+      content: none;
+    }
+
+    .eyebrow {
+      display: block;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      letter-spacing: -0.03em;
+      text-transform: none;
+      color: var(--text);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .hero-wrap {
+      padding: 0 0 3rem;
+    }
+
+    .hero-image {
+      position: relative;
+      min-height: 38vh;
+      border-radius: 0 0 32px 32px;
+      overflow: hidden;
+      margin-bottom: 2.25rem;
+      background:
+        linear-gradient(135deg, rgba(153, 185, 255, 0.18), rgba(153, 185, 255, 0.14), rgba(153, 185, 255, 0.08)),
+        url('res/top_photo.jpg') center/cover;
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10, 10, 14, 0.22), rgba(10, 10, 14, 0.5));
+      z-index: 0;
+    }
+
+    .topbar {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid rgba(153, 185, 255, 0.75);
+      background: var(--azure);
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background var(--transition);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+    }
+
+	    .hero-content {
+	      display: grid;
+	      gap: 1.25rem;
+	      padding-bottom: 1rem;
+	    }
+
+	    h1 {
+	      margin: 0;
+	      font-size: clamp(2.4rem, 8vw, 4.9rem);
+	      line-height: 0.92;
+	      letter-spacing: -0.06em;
+	      font-weight: 700;
+	    }
+
+    .role {
+      font-size: clamp(1.05rem, 3vw, 1.35rem);
+      color: var(--azure);
+      font-weight: 600;
+    }
+
+    .role-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .role-tags .project-tag {
+      display: inline-block;
+      margin-bottom: 0;
+      text-transform: none;
+      text-decoration: none;
+    }
+
+    .intro {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .icon-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    .icon-link {
+      width: 46px;
+      height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--azure);
+      transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition), box-shadow var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .icon-link:hover {
+      transform: translateY(-3px);
+      border-color: rgba(153, 185, 255, 0.45);
+      background: rgba(153, 185, 255, 0.08);
+      color: var(--azure);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .care-grid,
+    .grid-showcase {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .card {
+      position: relative;
+      padding: 0;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(243, 242, 249, 0.045), rgba(243, 242, 249, 0.025));
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background var(--transition);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: none;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(153, 185, 255, 0.34);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.38);
+      background: linear-gradient(180deg, rgba(243, 242, 249, 0.06), rgba(243, 242, 249, 0.03));
+    }
+
+    .project-tag {
+      display: inline-block;
+      margin-bottom: 0.9rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(153, 185, 255, 0.1);
+      color: var(--azure);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      margin: 0 0 0.65rem;
+      font-size: 1.15rem;
+    }
+
+    .card-body {
+      padding: 1.35rem;
+    }
+
+    .card p,
+    .care-list li,
+    .footer-copy {
+      color: var(--muted);
+    }
+
+    
+
+    .care-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .grid-showcase {
+      grid-template-columns: 1fr;
+    }
+
+    .grid-showcase > a {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .grid-tile {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      aspect-ratio: 1 / 1;
+      padding: 1.35rem;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(8, 9, 14, 0.08) 0%, rgba(8, 9, 14, 0.72) 100%),
+        var(--tile-image) center/cover no-repeat;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+      isolation: isolate;
+    }
+
+    .grid-tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(9, 10, 16, 0.02) 20%, rgba(9, 10, 16, 0.78) 100%);
+      z-index: 0;
+    }
+
+    .grid-tile:hover {
+      transform: translateY(-4px);
+      border-color: rgba(153, 185, 255, 0.34);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.38);
+    }
+
+    .grid-tile-content {
+      position: relative;
+      z-index: 1;
+      max-width: 14rem;
+    }
+
+    .grid-tile-content--split {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.9rem;
+      width: 100%;
+      max-width: none;
+    }
+
+    .grid-tile-content--split .role-tags {
+      align-items: baseline;
+      justify-content: flex-end;
+      gap: 0.45rem;
+    }
+
+    .grid-tile-content--split .project-tag {
+      margin-bottom: 0;
+      line-height: 1;
+    }
+
+    .grid-tile h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.15;
+    }
+
+    .care-list {
+      margin: 1rem 0 0;
+      padding-left: 1.1rem;
+    }
+
+    .care-list li + li {
+      margin-top: 0.7rem;
+    }
+
+    footer {
+      padding: 2rem 0 4rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-box {
+      display: grid;
+      gap: 1rem;
+      justify-items: start;
+    }
+
+    .footer-copy {
+      margin: 0;
+    }
+
+    .copy-toast {
+      position: fixed;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(153, 185, 255, 0.3);
+      border-radius: var(--radius-sm);
+      background: rgba(37, 38, 46, 0.94);
+      color: var(--text);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .copy-toast.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .accent-dot {
+      color: var(--azure);
+    }
+
+    @media (min-width: 700px) {
+      .section {
+        padding: 5.5rem 0;
+      }
+
+      .hero-image {
+        min-height: 46vh;
+        margin-bottom: 3rem;
+      }
+
+      .care-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid-showcase {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .grid-showcase > a.grid-tile-link--wide {
+        grid-column: span 2;
+      }
+
+      .grid-tile--wide {
+        grid-column: span 2;
+        aspect-ratio: 2 / 1;
+      }
+
+      .card-body {
+        padding: 1.6rem;
+      }
+    }
+
+    @media (min-width: 980px) {
+      .hero-wrap {
+        padding-top: 0;
+      }
+
+      .hero-content {
+        gap: 1.45rem;
+      }
+
+      .topbar {
+        top: 1.25rem;
+        right: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero-wrap">
+      <div class="hero-image">
+        <div class="topbar">
+          <a class="cta-btn" href="https://t.me/freshmorsikov" target="_blank" rel="noreferrer">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="page-shell hero-content">
+        <h1>Valentin Freshmorsikov<span class="accent-dot">.</span></h1>
+        <div class="role">Software Engineer</div>
+        <div class="role-tags" aria-label="Key strengths">
+          <a class="project-tag" href="./writing/core-qualities/">Product mindset</a>
+          <a class="project-tag" href="./writing/core-qualities/">AI fluency</a>
+          <a class="project-tag" href="./writing/core-qualities/">Leadership</a>
+        </div>
+        <p class="intro">
+          I focus on building useful products, turning ideas into something tangible that people can actually use.
+          I prioritize real user value, iterating fast and refining based on feedback, as that’s how I achieve perfect solutions.
+          I’m comfortable operating in ambiguity, making pragmatic decisions, and taking ownership to move things forward.
+          Ultimately, I’m driven by impact, bridging AI capabilities with real world needs and helping shape solutions that others can leverage.
+        </p>
+
+        <div class="icon-row" aria-label="Contact links">
+          <a class="icon-link" href="#" aria-label="Copy email address" data-copy-email="valentin.podkopaev.dev@gmail.com">
+            <!-- Email -->
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M16 10.8C16 11.118 15.8704 11.4233 15.6395 11.6484C15.4087 11.8734 15.0955 12 14.7687 12H1.23132C0.904558 11.9999 0.591307 11.8734 0.36049 11.6484C0.12963 11.4233 0 11.118 0 10.8V0.6C0 0.268629 0.275911 0 0.616264 0H15.3837C15.7241 0 16 0.268629 16 0.6V10.8ZM2.19882 1.2L7.99992 6.38547L13.8015 1.2H2.19882ZM14.7675 10.8H1.23253V1.96536L7.58346 7.64172C7.81917 7.85237 8.18128 7.8524 8.41698 7.64172L14.7675 1.96529V10.8Z" fill="currentColor"/>
+            </svg>
+          </a>
+          <a class="icon-link" href="https://www.linkedin.com/in/freshmorsikov/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <!-- LinkedIn -->
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.0986328 18.4926V6.43299C0.0986328 5.60045 0.775379 4.92554 1.61019 4.92554C2.445 4.92554 3.12174 5.60045 3.12174 6.43299V18.4926C3.12174 19.3252 2.445 20.0001 1.61019 20.0001C0.775379 20.0001 0.0986328 19.3252 0.0986328 18.4926Z" fill="currentColor"/>
+              <path d="M16.9774 11.7091V18.4926C16.9774 19.3252 17.6541 20.0001 18.4889 20.0001C19.3237 20.0001 20.0005 19.3252 20.0005 18.4926V11.7091C20.0005 9.90998 19.2833 8.18507 18.0077 6.9129C16.7321 5.64074 15.0025 4.92554 13.1985 4.92554C11.8277 4.92554 10.4998 5.3385 9.38145 6.09501C9.2276 5.4252 8.62633 4.92554 7.90804 4.92554C7.07323 4.92554 6.39648 5.60045 6.39648 6.43299V18.4926C6.39648 19.3252 7.07323 20.0001 7.90804 20.0001C8.74285 20.0001 9.41959 19.3252 9.41959 18.4926V11.7148C9.41959 10.7153 9.81801 9.7513 10.5267 9.04454C11.2354 8.33778 12.1963 7.94045 13.1985 7.94045C14.2007 7.94045 15.1616 8.33778 15.8703 9.04454C16.5789 9.7513 16.9774 10.7096 16.9774 11.7091Z" fill="currentColor"/>
+              <path d="M1.50972 3.01951C2.34351 3.01951 3.01943 2.34357 3.01943 1.50975C3.01943 0.675939 2.34351 0 1.50972 0C0.675923 0 0 0.675939 0 1.50975C0 2.34357 0.675923 3.01951 1.50972 3.01951Z" fill="currentColor"/>
+            </svg>
+          </a>
+          <a class="icon-link" href="https://github.com/freshmorsikov" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.7.5 12.12c0 5.13 3.3 9.47 7.88 11.01.58.1.79-.26.79-.57 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.57-3.88-1.57-.52-1.35-1.28-1.71-1.28-1.71-1.05-.73.08-.72.08-.72 1.16.08 1.77 1.21 1.77 1.21 1.03 1.79 2.71 1.28 3.37.98.1-.76.4-1.28.72-1.57-2.55-.29-5.23-1.3-5.23-5.79 0-1.28.45-2.32 1.19-3.14-.12-.29-.52-1.45.11-3.02 0 0 .97-.32 3.17 1.2a10.8 10.8 0 0 1 5.77 0c2.2-1.52 3.16-1.2 3.16-1.2.64 1.57.24 2.73.12 3.02.74.82 1.18 1.86 1.18 3.14 0 4.5-2.68 5.49-5.24 5.78.41.36.78 1.07.78 2.16 0 1.56-.01 2.81-.01 3.19 0 .31.2.68.8.57 4.57-1.55 7.86-5.89 7.86-11C23.5 5.7 18.35.5 12 .5Z"></path></svg>
+          </a>
+          <a class="icon-link" href="https://t.me/freshmorsikov" aria-label="Telegram" target="_blank" rel="noopener noreferrer">
+            <!-- Telegram -->
+            <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: translateX(-2px);">
+              <path d="M9.69176 1.96805C8.25883 2.55241 5.39486 3.76184 1.09992 5.59642C0.402474 5.86841 0.037128 6.13448 0.00387577 6.39448C-0.0523212 6.83409 0.508974 7.00715 1.27337 7.24282L1.27374 7.24294C1.37775 7.275 1.48551 7.30823 1.59597 7.34333C2.34821 7.5831 3.36011 7.86361 3.88615 7.87474C4.36332 7.88485 4.8959 7.69201 5.48387 7.29609C9.49684 4.64035 11.5683 3.29803 11.6982 3.269C11.79 3.24863 11.9172 3.22292 12.0034 3.29803C12.0895 3.37314 12.081 3.51528 12.0719 3.55341C12.0163 3.78596 9.81227 5.79489 8.67165 6.83445L8.64252 6.86101C8.30241 7.1711 8.0625 7.38984 8.01235 7.44097C7.89685 7.55855 7.77913 7.66977 7.66598 7.77666L7.66576 7.77687C6.96709 8.43731 6.44314 8.93258 7.695 9.74138C8.29507 10.129 8.77542 10.4497 9.25442 10.7695L9.25831 10.7721C9.78281 11.1224 10.306 11.4717 10.9829 11.9067C11.1545 12.017 11.3184 12.1315 11.478 12.243L11.4805 12.2447L11.4806 12.2448C12.0909 12.6715 12.6393 13.0548 13.3168 12.9935C13.7105 12.9581 14.1171 12.5952 14.3236 11.5127C14.8117 8.9546 15.7711 3.41185 15.9929 1.12792C16.0123 0.927826 15.9879 0.671728 15.9683 0.559307C15.9485 0.446887 15.9076 0.286697 15.7585 0.168124C15.582 0.0276953 15.3096 -0.00191454 15.1876 9.32276e-05C14.6335 0.00977096 13.7832 0.299596 9.69176 1.96805Z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="page-shell">
+        <div class="section-heading">
+          <span class="eyebrow">Projects</span>
+        </div>
+
+        <div class="grid-showcase">
+          <a href="https://movieswiper.freshmorsikov.com/" target="_blank" rel="noreferrer">
+            <article class="grid-tile" style="--tile-image: url('res/movie_swiper.jpg');">
+              <div class="grid-tile-content grid-tile-content--split">
+                <h3>Movie Swiper</h3>
+                <div class="role-tags" aria-label="Platforms">
+                  <span class="project-tag">Android</span>
+                  <span class="project-tag">iOS</span>
+                </div>
+              </div>
+            </article>
+          </a>
+
+          <a href="https://play.google.com/store/apps/details?id=com.bunbeauty.tiptoplive" target="_blank" rel="noreferrer">
+            <article class="grid-tile" style="--tile-image: url('res/fake_live.jpg');">
+              <div class="grid-tile-content grid-tile-content--split">
+                <h3>Fake Live</h3>
+                <div class="role-tags" aria-label="Platforms">
+                  <span class="project-tag">Android</span>
+                </div>
+              </div>
+            </article>
+          </a>
+
+          <a href="https://plugins.jetbrains.com/plugin/26141-kaitester" target="_blank" rel="noreferrer">
+            <article class="grid-tile" style="--tile-image: url('res/kai_tester.jpg');">
+              <div class="grid-tile-content grid-tile-content--split">
+                <h3>KAI Tester</h3>
+                <div class="role-tags" aria-label="Project type">
+                  <span class="project-tag">Intellij Plugin</span>
+                </div>
+              </div>
+            </article>
+          </a>
+
+          <a class="grid-tile-link--wide" href="https://play.google.com/store/apps/details?id=com.bunbeuaty.papakarlo" target="_blank" rel="noreferrer">
+            <article class="grid-tile grid-tile--wide" style="--tile-image: url('res/food_delivery.jpg');">
+              <div class="grid-tile-content grid-tile-content--split">
+                <h3>Food Delivery</h3>
+                <div class="role-tags" aria-label="Platforms">
+                  <span class="project-tag">Android</span>
+                  <span class="project-tag">iOS</span>
+                </div>
+              </div>
+            </article>
+          </a>
+
+          <a href="https://github.com/freshmorsikov/TutorAI" target="_blank" rel="noreferrer">
+            <article class="grid-tile" style="--tile-image: url('res/tutor_ai.jpg');">
+              <div class="grid-tile-content grid-tile-content--split">
+                <h3>Tutor AI</h3>
+                <div class="role-tags" aria-label="Project type">
+                  <span class="project-tag">Web</span>
+                </div>
+              </div>
+            </article>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="page-shell">
+        <div class="section-heading">
+          <span class="eyebrow">Things I Care About</span>
+        </div>
+
+        <div class="care-grid">
+          <article class="card">
+            <div class="card-body">
+            <h3>Best Practices</h3>
+            <ul class="care-list">
+              <li>Accessible interfaces that work for real users in real conditions.</li>
+              <li>Systems thinking instead of one-off visual decisions.</li>
+              <li>Thoughtful collaboration between design, product, and engineering.</li>
+              <li>Performance, responsiveness, and maintainable front-end foundations.</li>
+            </ul>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-body">
+            <h3>Vision</h3>
+            <ul class="care-list">
+              <li>Products should feel calm, intuitive, and quietly confident.</li>
+              <li>Good design creates trust before a user reads a single sentence.</li>
+              <li>Beautiful interfaces matter most when they also reduce friction.</li>
+              <li>Technology should support focus, clarity, and better decisions.</li>
+            </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="page-shell footer-box">
+      <div class="icon-row" aria-label="Footer contact links">
+        <a class="icon-link" href="#" aria-label="Copy email address" data-copy-email="valentin.podkopaev.dev@gmail.com">
+          <!-- Email -->
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16 10.8C16 11.118 15.8704 11.4233 15.6395 11.6484C15.4087 11.8734 15.0955 12 14.7687 12H1.23132C0.904558 11.9999 0.591307 11.8734 0.36049 11.6484C0.12963 11.4233 0 11.118 0 10.8V0.6C0 0.268629 0.275911 0 0.616264 0H15.3837C15.7241 0 16 0.268629 16 0.6V10.8ZM2.19882 1.2L7.99992 6.38547L13.8015 1.2H2.19882ZM14.7675 10.8H1.23253V1.96536L7.58346 7.64172C7.81917 7.85237 8.18128 7.8524 8.41698 7.64172L14.7675 1.96529V10.8Z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a class="icon-link" href="https://www.linkedin.com/in/freshmorsikov/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <!-- LinkedIn -->
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.0986328 18.4926V6.43299C0.0986328 5.60045 0.775379 4.92554 1.61019 4.92554C2.445 4.92554 3.12174 5.60045 3.12174 6.43299V18.4926C3.12174 19.3252 2.445 20.0001 1.61019 20.0001C0.775379 20.0001 0.0986328 19.3252 0.0986328 18.4926Z" fill="currentColor"/>
+            <path d="M16.9774 11.7091V18.4926C16.9774 19.3252 17.6541 20.0001 18.4889 20.0001C19.3237 20.0001 20.0005 19.3252 20.0005 18.4926V11.7091C20.0005 9.90998 19.2833 8.18507 18.0077 6.9129C16.7321 5.64074 15.0025 4.92554 13.1985 4.92554C11.8277 4.92554 10.4998 5.3385 9.38145 6.09501C9.2276 5.4252 8.62633 4.92554 7.90804 4.92554C7.07323 4.92554 6.39648 5.60045 6.39648 6.43299V18.4926C6.39648 19.3252 7.07323 20.0001 7.90804 20.0001C8.74285 20.0001 9.41959 19.3252 9.41959 18.4926V11.7148C9.41959 10.7153 9.81801 9.7513 10.5267 9.04454C11.2354 8.33778 12.1963 7.94045 13.1985 7.94045C14.2007 7.94045 15.1616 8.33778 15.8703 9.04454C16.5789 9.7513 16.9774 10.7096 16.9774 11.7091Z" fill="currentColor"/>
+            <path d="M1.50972 3.01951C2.34351 3.01951 3.01943 2.34357 3.01943 1.50975C3.01943 0.675939 2.34351 0 1.50972 0C0.675923 0 0 0.675939 0 1.50975C0 2.34357 0.675923 3.01951 1.50972 3.01951Z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a class="icon-link" href="https://github.com/freshmorsikov" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.7.5 12.12c0 5.13 3.3 9.47 7.88 11.01.58.1.79-.26.79-.57 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.57-3.88-1.57-.52-1.35-1.28-1.71-1.28-1.71-1.05-.73.08-.72.08-.72 1.16.08 1.77 1.21 1.77 1.21 1.03 1.79 2.71 1.28 3.37.98.1-.76.4-1.28.72-1.57-2.55-.29-5.23-1.3-5.23-5.79 0-1.28.45-2.32 1.19-3.14-.12-.29-.52-1.45.11-3.02 0 0 .97-.32 3.17 1.2a10.8 10.8 0 0 1 5.77 0c2.2-1.52 3.16-1.2 3.16-1.2.64 1.57.24 2.73.12 3.02.74.82 1.18 1.86 1.18 3.14 0 4.5-2.68 5.49-5.24 5.78.41.36.78 1.07.78 2.16 0 1.56-.01 2.81-.01 3.19 0 .31.2.68.8.57 4.57-1.55 7.86-5.89 7.86-11C23.5 5.7 18.35.5 12 .5Z"></path></svg>
+        </a>
+        <a class="icon-link" href="https://t.me/freshmorsikov" aria-label="Telegram" target="_blank" rel="noopener noreferrer">
+          <!-- Telegram -->
+          <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: translateX(-2px);">
+            <path d="M9.69176 1.96805C8.25883 2.55241 5.39486 3.76184 1.09992 5.59642C0.402474 5.86841 0.037128 6.13448 0.00387577 6.39448C-0.0523212 6.83409 0.508974 7.00715 1.27337 7.24282L1.27374 7.24294C1.37775 7.275 1.48551 7.30823 1.59597 7.34333C2.34821 7.5831 3.36011 7.86361 3.88615 7.87474C4.36332 7.88485 4.8959 7.69201 5.48387 7.29609C9.49684 4.64035 11.5683 3.29803 11.6982 3.269C11.79 3.24863 11.9172 3.22292 12.0034 3.29803C12.0895 3.37314 12.081 3.51528 12.0719 3.55341C12.0163 3.78596 9.81227 5.79489 8.67165 6.83445L8.64252 6.86101C8.30241 7.1711 8.0625 7.38984 8.01235 7.44097C7.89685 7.55855 7.77913 7.66977 7.66598 7.77666L7.66576 7.77687C6.96709 8.43731 6.44314 8.93258 7.695 9.74138C8.29507 10.129 8.77542 10.4497 9.25442 10.7695L9.25831 10.7721C9.78281 11.1224 10.306 11.4717 10.9829 11.9067C11.1545 12.017 11.3184 12.1315 11.478 12.243L11.4805 12.2447L11.4806 12.2448C12.0909 12.6715 12.6393 13.0548 13.3168 12.9935C13.7105 12.9581 14.1171 12.5952 14.3236 11.5127C14.8117 8.9546 15.7711 3.41185 15.9929 1.12792C16.0123 0.927826 15.9879 0.671728 15.9683 0.559307C15.9485 0.446887 15.9076 0.286697 15.7585 0.168124C15.582 0.0276953 15.3096 -0.00191454 15.1876 9.32276e-05C14.6335 0.00977096 13.7832 0.299596 9.69176 1.96805Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+
+      <p class="footer-copy">
+        Open to ideas that don’t want to stay ideas for long.
+      </p>
+    </div>
+  </footer>
+
+  <div class="copy-toast" id="copy-toast" role="status" aria-live="polite">Email copied</div>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', event => {
+        const targetId = link.getAttribute('href');
+        if (targetId.length > 1) {
+          const target = document.querySelector(targetId);
+          if (target) {
+            event.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    const copyToast = document.getElementById('copy-toast');
+    let copyToastTimeout;
+
+    const showCopyToast = () => {
+      if (!copyToast) return;
+
+      copyToast.classList.add('is-visible');
+      window.clearTimeout(copyToastTimeout);
+      copyToastTimeout = window.setTimeout(() => {
+        copyToast.classList.remove('is-visible');
+      }, 1600);
+    };
+
+    document.querySelectorAll('[data-copy-email]').forEach(link => {
+      link.addEventListener('click', async event => {
+        event.preventDefault();
+
+        const email = link.getAttribute('data-copy-email');
+        if (!email) return;
+
+        try {
+          await navigator.clipboard.writeText(email);
+          link.setAttribute('aria-label', 'Email copied');
+          showCopyToast();
+          window.setTimeout(() => {
+            link.setAttribute('aria-label', 'Copy email address');
+          }, 1500);
+        } catch (error) {
+          console.error('Failed to copy email address:', error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
