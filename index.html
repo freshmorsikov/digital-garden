@@ -259,7 +259,7 @@
       margin-bottom: 0.9rem;
       padding: 0.3rem 0.65rem;
       border-radius: 999px;
-      background: rgba(153, 185, 255, 0.1);
+      background: rgba(153, 185, 255, 0.18);
       color: var(--azure);
       font-size: 0.78rem;
       letter-spacing: 0.04em;
@@ -328,8 +328,9 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(9, 10, 16, 0.02) 20%, rgba(9, 10, 16, 0.78) 100%);
+      background: linear-gradient(180deg, rgba(9, 10, 16, 0.14) 18%, rgba(9, 10, 16, 0.88) 100%);
       z-index: 1;
+      pointer-events: none;
     }
 
     .grid-tile:hover {
@@ -340,7 +341,7 @@
 
     .grid-tile-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       max-width: 14rem;
     }
 
