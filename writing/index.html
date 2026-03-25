@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#25262e" />
   <title>Writing</title>
   <link rel="icon" href="../res/favicon.svg" type="image/svg+xml" />
   <style>
     :root {
+      background-color: #25262e;
       --bg: #161821;
       --bg-soft: #1f2330;
       --panel: rgba(255, 255, 255, 0.04);
@@ -22,14 +24,22 @@
       box-sizing: border-box;
     }
 
+    html {
+      height: 100%;
+      min-height: -webkit-fill-available;
+      overscroll-behavior-y: contain;
+      background: #25262e;
+    }
+
     body {
       margin: 0;
+      min-height: 100%;
+      min-height: -webkit-fill-available;
       min-height: 100vh;
+      overscroll-behavior-y: contain;
       font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: #25262e;
       color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(125, 162, 255, 0.15), transparent 24%),
-        linear-gradient(180deg, #11131a 0%, var(--bg) 100%);
       line-height: 1.7;
     }
 
@@ -63,7 +73,7 @@
       padding: 1.75rem;
       border: 1px solid var(--border);
       border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025));
+      background: rgba(255, 255, 255, 0.04);
       box-shadow: var(--shadow);
     }
 
@@ -278,7 +288,7 @@
         const markdown = await response.text();
         const titleMatch = markdown.match(/^#\s+(.+)$/m);
 
-        document.title = titleMatch ? titleMatch[1] + " | Writing" : "Writing";
+        document.title = titleMatch ? titleMatch[1] : "Writing";
         content.innerHTML = markdownToHtml(markdown);
       } catch (error) {
         document.title = "Writing";
