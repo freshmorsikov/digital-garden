@@ -12,7 +12,14 @@
   <link
     rel="preload"
     as="image"
-    href="res/top_photo_2.webp"
+    href="res/top_photo-1920.webp"
+    imagesrcset="
+      res/top_photo-768.webp 768w,
+      res/top_photo-1280.webp 1280w,
+      res/top_photo-1920.webp 1920w,
+      res/top_photo-2560.webp 2560w
+    "
+    imagesizes="100vw"
     type="image/webp"
   >
   <style>
@@ -117,6 +124,7 @@
     }
 
     .hero-media {
+      display: block;
       position: absolute;
       inset: 0;
       z-index: 0;
@@ -126,6 +134,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 38%;
     }
 
     .topbar {
@@ -518,15 +527,28 @@
   <main>
     <section class="hero-wrap">
       <div class="hero-image">
-        <img
-          class="hero-media hero-photo"
-          src="res/top_photo_2.webp"
-          alt=""
-          width="1739"
-          height="848"
-          fetchpriority="high"
-          decoding="async"
-        >
+        <picture class="hero-media">
+          <source
+            srcset="
+              res/top_photo-768.webp 768w,
+              res/top_photo-1280.webp 1280w,
+              res/top_photo-1920.webp 1920w,
+              res/top_photo-2560.webp 2560w
+            "
+            sizes="100vw"
+            type="image/webp"
+          >
+          <img
+            class="hero-photo"
+            src="res/top_photo-1920.webp"
+            alt="A developer working at a laptop in a modern office."
+            width="2560"
+            height="1440"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          >
+        </picture>
         <div class="topbar">
           <a class="cta-btn" href="https://t.me/freshmorsikov" target="_blank" rel="noreferrer">Get in touch</a>
         </div>
