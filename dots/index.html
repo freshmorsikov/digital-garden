@@ -94,8 +94,8 @@
       });
       canvas.addEventListener('pointermove', event => {
         if (pointer.dragging) {
-          targetYaw += (event.clientX - pointer.lastX) * 0.006;
-          targetPitch = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, targetPitch + (event.clientY - pointer.lastY) * 0.006));
+          targetYaw += (event.clientX - pointer.lastX) * 0.003;
+          targetPitch -= (event.clientY - pointer.lastY) * 0.003;
           pointer.lastX = event.clientX;
           pointer.lastY = event.clientY;
           if (reducedMotion.matches) draw(0);
@@ -133,29 +133,34 @@
         const delta = lastFrameTime === undefined ? 16 : Math.min(Math.max(time - lastFrameTime, 0), 50);
         lastFrameTime = time;
         const easing = reducedMotion.matches ? 1 : 1 - Math.exp(-delta / 350);
-        const rotationEase = reducedMotion.matches ? 1 : 1 - Math.exp(-delta / 220);
+        const rotationEase = reducedMotion.matches ? 1 : 1 - Math.exp(-delta / (pointer.dragging ? 100 : 220));
         dragYaw += (targetYaw - dragYaw) * rotationEase;
         dragPitch += (targetPitch - dragPitch) * rotationEase;
         const t = time * 0.00018;
-        const radius = Math.min(width * 0.67, height * 0.48);
-        const centerX = width * 0.57;
+        const compositionWidth = Math.max(width, height * 0.72);
+        const radius = Math.min(compositionWidth * 0.67, height * 0.48);
+        const centerX = Math.max(compositionWidth * 0.57, radius * 1.25 + 8);
         const centerY = height * 0.53;
         const rotation = t * 0.65 + dragYaw;
         const cos = Math.cos(rotation), sin = Math.sin(rotation);
         const pitchCos = Math.cos(dragPitch), pitchSin = Math.sin(dragPitch);
         for (const point of points) {
-          const x = point.x * cos - point.z * sin;
-          const rotatedZ = point.x * sin + point.z * cos;
-          const y = point.y * pitchCos - rotatedZ * pitchSin;
-          const z = point.y * pitchSin + rotatedZ * pitchCos;
-          // Fold several uneven layers through one another instead of a smooth shell.
-          const fold = 1 + 0.07 * Math.sin(y * 6 + x * 4 + t * 2)
-            + 0.045 * Math.sin(x * 9 - z * 5 + y * 5 - t * 2)
-            + 0.03 * Math.cos(z * 11 + y * 9 + t * 3);
-          const depthZ = z * point.layer * fold;
-          const perspective = 1 / (1.9 - depthZ * 0.24);
-          let px = centerX + (x * fold * point.layer + 0.035 * Math.sin(y * 8 + z * 5 + t)) * radius * perspective * 1.8;
-          let py = centerY + (y * fold * point.layer + 0.035 * Math.sin(x * 6 + z * 4 - t)) * radius * perspective * 1.8;
+          // Animate the folds in the cloud's own space, independently of its orientation.
+          const { x: baseX, y: baseY, z: baseZ } = point;
+          const fold = 1 + 0.07 * Math.sin(baseY * 6 + baseX * 4 + t * 2)
+            + 0.045 * Math.sin(baseX * 9 - baseZ * 5 + baseY * 5 - t * 2)
+            + 0.03 * Math.cos(baseZ * 11 + baseY * 9 + t * 3);
+          const waveX = baseX * fold * point.layer + 0.035 * Math.sin(baseY * 8 + baseZ * 5 + t);
+          const waveY = baseY * fold * point.layer + 0.035 * Math.sin(baseX * 6 + baseZ * 4 - t);
+          const waveZ = baseZ * fold * point.layer;
+          // Turn the already-animated cloud as a whole when the pointer drags it.
+          const x = waveX * cos - waveZ * sin;
+          const rotatedZ = waveX * sin + waveZ * cos;
+          const y = waveY * pitchCos - rotatedZ * pitchSin;
+          const z = waveY * pitchSin + rotatedZ * pitchCos;
+          const perspective = 1 / (1.9 - z * 0.24);
+          let px = centerX + x * radius * perspective * 1.8;
+          let py = centerY + y * radius * perspective * 1.8;
           let targetX = 0, targetY = 0;
           if (pointer.active && z > 0) {
             const dx = px - pointer.x;
