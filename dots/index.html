@@ -9,21 +9,52 @@
     * { box-sizing: border-box; }
     html, body { width: 100%; min-height: 100%; margin: 0; }
     body { background: #06131d; overflow: hidden; }
-    main { min-height: 100vh; min-height: 100dvh; display: grid; grid-template-columns: 1fr 1fr; }
-    .visual { position: relative; min-width: 0; min-height: 100vh; overflow: hidden; }
+    main { min-height: 100vh; min-height: 100dvh; display: grid; grid-template-columns: 40% 60%; }
+    .intro-side, .visual { position: relative; min-width: 0; min-height: 100vh; }
+    .visual { overflow: hidden; }
     canvas { display: block; width: 100%; height: 100%; position: absolute; inset: 0; cursor: grab; touch-action: none; }
     canvas:active { cursor: grabbing; }
+    .header { position: absolute; z-index: 1; inset: 0 0 auto; width: min(1500px, calc(100% - 64px)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem 0; color: #e9f6fa; font: 500 0.8rem/1.4 system-ui, sans-serif; pointer-events: none; }
+    .header-title { font-size: 1rem; font-weight: 700; letter-spacing: -0.03em; }
+    .header-sections { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.5rem 1.5rem; color: #a7c1cc; }
+    .intro { position: relative; z-index: 1; width: min(calc(100% - max(32px, (100vw - 1500px) / 2) - 32px), 560px); margin-left: max(32px, (100vw - 1500px) / 2); margin-top: clamp(7rem, 15vh, 10rem); color: #b6c7ce; font: 400 1.2rem/1.65 system-ui, sans-serif; }
+    .intro-photo { display: block; width: 320px; max-width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 20px; margin-bottom: 1.5rem; }
+    .intro h1 { margin: 0; font-size: 1.6em; line-height: 1.2; }
+    .intro .intro-role { margin: 0.5rem 0 1.25rem; color: #78b8c9; font-size: 0.8em; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+    .intro p { margin: 0; }
+    .intro p:not(.intro-role) { font-size: 0.875em; }
     @media (max-width: 700px) {
+      body { overflow-y: auto; }
       main { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
-      .visual { min-height: 50vh; }
+      .intro-side, .visual { min-height: 50vh; }
+      .header { padding: 1rem 0; }
+      .header-sections { gap: 0.4rem 0.8rem; }
+      .intro { margin-top: 6rem; margin-bottom: 2rem; font-size: 1.05rem; }
     }
   </style>
 </head>
 <body>
   <main>
-    <div></div>
-    <div class="visual" aria-hidden="true"><canvas></canvas></div>
+    <div class="intro-side">
+      <div class="intro">
+        <img class="intro-photo" src="../res/top_photo-768.webp" alt="A developer working at a laptop in an office">
+        <h1>Valentin Freshmorsikov</h1>
+        <p class="intro-role">Engineering Lead</p>
+        <p>I specialize in building robust, production-ready AI-powered products. I combine hands-on product development experience with a deep understanding of how AI agents work under the hood. I also help engineers and teams adopt AI agents effectively, turning cutting-edge technology into reliable, real-world solutions.</p>
+      </div>
+    </div>
+    <div class="visual">
+      <canvas aria-hidden="true"></canvas>
+    </div>
   </main>
+  <header class="header">
+    <span class="header-title">Freshmorsikov.</span>
+    <div class="header-sections" aria-label="Sections">
+      <span>Section 1</span>
+      <span>Section 2</span>
+      <span>Section 3</span>
+    </div>
+  </header>
   <script>
     (() => {
       const canvas = document.querySelector('canvas');
