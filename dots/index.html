@@ -10,11 +10,11 @@
     html, body { width: 100%; min-height: 100%; margin: 0; }
     html { scroll-behavior: smooth; }
     body { background: #06131d; }
-    main { position: relative; z-index: 1; width: 40%; pointer-events: none; }
+    main { position: relative; z-index: 1; width: 50%; pointer-events: none; }
     .hero, .content-section { pointer-events: auto; }
     .hero, .intro-side { min-height: 100vh; min-height: 100dvh; }
     .intro-side { display: flow-root; }
-    .visual { position: fixed; inset: 0 0 0 40%; overflow: hidden; }
+    .visual { position: fixed; inset: 0 0 0 50%; overflow: hidden; }
     canvas { display: block; width: 100%; height: 100%; position: absolute; inset: 0; cursor: grab; touch-action: none; }
     canvas:active { cursor: grabbing; }
     .header { position: fixed; z-index: 2; inset: 0 0 auto; width: min(1500px, calc(100% - 64px)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem 0; color: #e9f6fa; font: 500 0.8rem/1.4 system-ui, sans-serif; pointer-events: none; }
@@ -30,8 +30,16 @@
     .intro p:not(.intro-role) { font-size: 0.875em; }
     .intro p:not(.intro-role) + p { margin-top: 1em; }
     .content-section { min-height: 100vh; min-height: 100dvh; padding: clamp(4rem, 10vh, 7rem) max(32px, (100vw - 1500px) / 2); color: #e9f6fa; font-family: system-ui, sans-serif; }
+    #projects { padding-right: 32px; }
     .content-section h2 { margin: 0 0 2rem; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; }
     .content-block { min-height: 50vh; border: 1px solid #294652; border-radius: 20px; }
+    .project-card { display: flex; width: 100%; overflow: hidden; border: 1px solid #294652; border-radius: 20px; background: #0b202b; color: inherit; text-decoration: none; transition: border-color 0.2s ease, background-color 0.2s ease; }
+    .project-card:hover, .project-card:focus-visible { border-color: #78b8c9; background: #102b38; }
+    .project-card:focus-visible { outline: 2px solid #a7e5f2; outline-offset: 4px; }
+    .project-card img { width: clamp(120px, 25%, 260px); height: auto; aspect-ratio: 1; min-width: 0; align-self: center; object-fit: contain; }
+    .project-card-content { display: flex; flex: 1; flex-direction: column; justify-content: center; align-items: flex-start; gap: 0.75rem; padding: clamp(1rem, 2vw, 1.75rem); }
+    .project-card h3 { margin: 0; font-size: clamp(1.2rem, 2vw, 1.5rem); letter-spacing: -0.03em; }
+    .project-card-tag { color: #a7c1cc; font-size: 0.8rem; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     @media (max-width: 700px) {
       main { width: 100%; }
@@ -57,7 +65,13 @@
     </section>
     <section class="content-section" id="projects" aria-labelledby="projects-title">
       <h2 id="projects-title">Projects</h2>
-      <div class="content-block"></div>
+      <a class="project-card" href="https://plugins.jetbrains.com/plugin/26141-kaitester" target="_blank" rel="noreferrer">
+        <img src="../res/kai_tester.webp" alt="" width="400" height="400" loading="lazy" decoding="async">
+        <div class="project-card-content">
+          <h3>KAI Tester</h3>
+          <span class="project-card-tag">IntelliJ Plugin</span>
+        </div>
+      </a>
     </section>
     <section class="content-section" id="blog" aria-labelledby="blog-title">
       <h2 id="blog-title">Blog</h2>
